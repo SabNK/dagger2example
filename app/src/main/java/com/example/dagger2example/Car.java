@@ -6,8 +6,8 @@ import javax.inject.Inject;
 
 public class Car {
     private static final String TAG = "Car";
-    Engine engine;
-    Wheels wheels;
+    private Engine engine;
+    private Wheels wheels;
 
     @Inject
     public Car(Engine engine, Wheels wheels) {
