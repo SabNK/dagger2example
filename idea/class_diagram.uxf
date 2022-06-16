@@ -1,0 +1,80 @@
+<diagram program="umletino" version="14.4.0-SNAPSHOT"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>60</x><y>450</y><w>160</w><h>60</h></coordinates><panel_attributes>MainActivity
+bg=yellow
+--
+-car: Car
+--
++onCreate(---)</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLPackage</id><coordinates><x>1860</x><y>480</y><w>140</w><h>70</h></coordinates><panel_attributes>EmptyPackage
+--
+bg=orange</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>170</x><y>50</y><w>100</w><h>40</h></coordinates><panel_attributes>Engine
+bg=blue
+--
++Engine()</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>0</x><y>50</y><w>100</w><h>40</h></coordinates><panel_attributes>Wheels
+bg=blue
+--
++Wheels()</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>60</x><y>260</y><w>160</w><h>90</h></coordinates><panel_attributes>Car
+bg=blue
+--
+-engine: Engine
+-wheels: Wheels
+--
++Carf(engine, wheels)
++drive(): void</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLInterface</id><coordinates><x>350</x><y>40</y><w>100</w><h>100</h></coordinates><panel_attributes>CarComponent
+bg=pink
+--
+getCar(): Car
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>610</x><y>40</y><w>310</w><h>130</h></coordinates><panel_attributes>Car_Factory
+bg=magenta
+--
+- engineProvider: Provider&lt;Engine&gt;
+- wheelsProvider: Provider&lt;Wheels&gt;
+--
++Car_Factory(engineProvider, wheelsProvider)
++get() : Car
+_+create(engineProvider, wheelsProvider) : Car_Factory_
+_+newInstance(engine, wheels) : Car _
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>610</x><y>210</y><w>310</w><h>130</h></coordinates><panel_attributes>Engine_Factory
+bg=magenta
+--
+--
++get() : Engine
+_+create() : Engine_Factory_
+_+newInstance() : Engine _
+--
+{innerclass
+_-InstanceHolder :: Engine_Factory_
+--
+_-INSTANCE : Engine_Factory_
+innerclass}</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>610</x><y>360</y><w>310</w><h>130</h></coordinates><panel_attributes>Wheels_Factory
+bg=magenta
+--
+--
++get() : Wheels
+_+create() : Wheel_Factory_
+_+newInstance() : Wheel _
+--
+{innerclass
+_-InstanceHolder :: Wheel_Factory_
+--
+_-INSTANCE : Wheel_Factory_
+innerclass}</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>610</x><y>610</y><w>310</w><h>220</h></coordinates><panel_attributes>DaggerCarComponent
+bg=magenta
+--
+--
+- DaggerCarComponent()
+_+builder() : Builder_
+_+create() : CarComponent_
+--
+{innerclass
+_+Builder :: DaggerCarComponent_
+--
+- Builder()
++build() : CarComponent
+innerclass}
+{innerclass
+_-CarComponentImpl :: DaggerCarComponent_
+--
+- carComponentImpl : CarComponentImpl
+--
+- CarComponentImpl()
++ getCar() : Car
+innerclass}</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>40</x><y>80</y><w>120</w><h>200</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>100;180;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>140</x><y>80</y><w>100</w><h>200</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;180;80;10</additional_attributes></element></diagram>
