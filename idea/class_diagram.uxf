@@ -3,9 +3,7 @@ bg=yellow
 --
 -car: Car
 --
-+onCreate(---)</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLPackage</id><coordinates><x>1860</x><y>480</y><w>140</w><h>70</h></coordinates><panel_attributes>EmptyPackage
---
-bg=orange</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>170</x><y>50</y><w>100</w><h>40</h></coordinates><panel_attributes>Engine
++onCreate(---)</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>170</x><y>50</y><w>100</w><h>40</h></coordinates><panel_attributes>Engine
 bg=blue
 --
 +Engine()</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>0</x><y>50</y><w>100</w><h>40</h></coordinates><panel_attributes>Wheels
@@ -18,10 +16,11 @@ bg=blue
 -wheels: Wheels
 --
 +Carf(engine, wheels)
-+drive(): void</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLInterface</id><coordinates><x>350</x><y>40</y><w>100</w><h>100</h></coordinates><panel_attributes>CarComponent
++drive(): void</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLInterface</id><coordinates><x>290</x><y>40</y><w>220</w><h>120</h></coordinates><panel_attributes>CarComponent
 bg=pink
 --
 getCar(): Car
+inject(mainActivity : Mainactivity) : void
 </panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>610</x><y>40</y><w>310</w><h>130</h></coordinates><panel_attributes>Car_Factory
 bg=magenta
 --
@@ -56,7 +55,7 @@ _+newInstance() : Wheel _
 _-InstanceHolder :: Wheel_Factory_
 --
 _-INSTANCE : Wheel_Factory_
-innerclass}</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>610</x><y>610</y><w>310</w><h>220</h></coordinates><panel_attributes>DaggerCarComponent
+innerclass}</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>280</x><y>520</y><w>310</w><h>250</h></coordinates><panel_attributes>DaggerCarComponent
 bg=magenta
 --
 --
@@ -77,4 +76,15 @@ _-CarComponentImpl :: DaggerCarComponent_
 --
 - CarComponentImpl()
 + getCar() : Car
-innerclass}</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>40</x><y>80</y><w>120</w><h>200</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>100;180;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>140</x><y>80</y><w>100</w><h>200</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;180;80;10</additional_attributes></element></diagram>
++inject(mainActivity : MainActivity) : void
+- injectMainActivity(instance : MainActivity) : MainActivity
+innerclass}</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>40</x><y>80</y><w>120</w><h>200</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>100;180;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>140</x><y>80</y><w>100</w><h>200</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;180;80;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>610</x><y>520</y><w>390</w><h>110</h></coordinates><panel_attributes>MainActivity_MembersInjector
+bg=magenta
+--
+- carProvider: Provider&lt;Car&gt;
+--
++MainActivity_MembersInjector(carProvider : Provider&lt;Car&gt;)
+_+create(carProvider : Provider&lt;Car&gt;) : MembersInjector&lt;MainActivity&gt;_
++injectMembers(instance : MainActivity) : void
+_+injectCar(instance : MainActivity, car : Car) : void_
+</panel_attributes><additional_attributes></additional_attributes></element></diagram>
