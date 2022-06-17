@@ -6,7 +6,6 @@ import com.example.dagger2example.MainActivity_MembersInjector;
 import com.example.dagger2example.car.Car;
 import com.example.dagger2example.car.Car_Factory;
 import com.example.dagger2example.car.Car_MembersInjector;
-import com.example.dagger2example.car.DieselEngine;
 import com.example.dagger2example.car.Remote;
 import com.example.dagger2example.car.Wheels;
 import dagger.internal.DaggerGenerated;
@@ -25,33 +24,30 @@ public final class DaggerCarComponent {
     return new Builder();
   }
 
-  public static CarComponent create() {
-    return new Builder().build();
-  }
-
   public static final class Builder {
+    private DieselEngineModule dieselEngineModule;
+
     private Builder() {
     }
 
-    /**
-     * @deprecated This module is declared, but an instance is not used in the component. This method is a no-op. For more, see https://dagger.dev/unused-modules.
-     */
-    @Deprecated
-    public Builder wheelsModule(WheelsModule wheelsModule) {
-      Preconditions.checkNotNull(wheelsModule);
+    public Builder dieselEngineModule(DieselEngineModule dieselEngineModule) {
+      this.dieselEngineModule = Preconditions.checkNotNull(dieselEngineModule);
       return this;
     }
 
     public CarComponent build() {
-      return new CarComponentImpl();
+      Preconditions.checkBuilderRequirement(dieselEngineModule, DieselEngineModule.class);
+      return new CarComponentImpl(dieselEngineModule);
     }
   }
 
   private static final class CarComponentImpl implements CarComponent {
+    private final DieselEngineModule dieselEngineModule;
+
     private final CarComponentImpl carComponentImpl = this;
 
-    private CarComponentImpl() {
-
+    private CarComponentImpl(DieselEngineModule dieselEngineModuleParam) {
+      this.dieselEngineModule = dieselEngineModuleParam;
 
     }
 
@@ -61,7 +57,7 @@ public final class DaggerCarComponent {
 
     @Override
     public Car getCar() {
-      return injectCar(Car_Factory.newInstance(new DieselEngine(), wheels()));
+      return injectCar(Car_Factory.newInstance(DieselEngineModule_ProvideEngineFactory.provideEngine(dieselEngineModule), wheels()));
     }
 
     @Override

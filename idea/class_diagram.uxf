@@ -1,8 +1,8 @@
-<diagram program="umletino" version="14.4.0-SNAPSHOT"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>804</x><y>0</y><w>100</w><h>60</h></coordinates><panel_attributes>PetrolEngine
+<diagram program="umletino" version="14.4.0-SNAPSHOT"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>494</x><y>70</y><w>100</w><h>60</h></coordinates><panel_attributes>PetrolEngine
 bg=blue
 --
 +PetrolEngine()
-+start() : void</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>664</x><y>240</y><w>240</w><h>110</h></coordinates><panel_attributes>Car
++start() : void</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>354</x><y>310</y><w>240</w><h>110</h></coordinates><panel_attributes>Car
 bg=blue
 --
 -engine: Engine
@@ -10,33 +10,31 @@ bg=blue
 --
 +Carf(engine, wheels)
 +drive(): void
-+enableRemote(remote : Remote) : void</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>754</x><y>130</y><w>100</w><h>130</h></coordinates><panel_attributes>lt=.</panel_attributes><additional_attributes>10;110;80;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>964</x><y>240</y><w>310</w><h>130</h></coordinates><panel_attributes>DieselEngine_Factory
++enableRemote(remote : Remote) : void</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>444</x><y>200</y><w>100</w><h>130</h></coordinates><panel_attributes>lt=.</panel_attributes><additional_attributes>10;110;80;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>634</x><y>440</y><w>350</w><h>100</h></coordinates><panel_attributes>DieselEngineModule_ProvideEngineFactory
 bg=magenta
 --
+module : DieselEngineModule
 --
-+get() : DieselEngine
-_+create() : DieselEngine_Factory_
-_+newInstance() : DieselEngine_
---
-{innerclass
-_-InstanceHolder :: DieselEngine_Factory_
---
-_-INSTANCE : DieselEngine_Factory_
-innerclass}</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLInterface</id><coordinates><x>1284</x><y>490</y><w>80</w><h>90</h></coordinates><panel_attributes>Provider&lt;T&gt;
++get() : Engine
+_+create(module) : DieselEngineModule_ProvideEngineFactory_
+_+provideEngine(instance : DieselEngineModule) : Engine_
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLInterface</id><coordinates><x>974</x><y>620</y><w>80</w><h>90</h></coordinates><panel_attributes>Provider&lt;T&gt;
 bg=green
 --
-get() : T</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLInterface</id><coordinates><x>1013</x><y>490</y><w>80</w><h>70</h></coordinates><panel_attributes>Factory&lt;T&gt;
-bg=green</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1044</x><y>500</y><w>100</w><h>190</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;10;80;170</additional_attributes></element><element><id>Relation</id><coordinates><x>1044</x><y>500</y><w>300</w><h>30</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>280;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1044</x><y>360</y><w>180</w><h>170</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;150;160;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>598</x><y>400</y><w>300</w><h>50</h></coordinates><panel_attributes>/DieselEngineModule/
+get() : T</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLInterface</id><coordinates><x>703</x><y>610</y><w>80</w><h>70</h></coordinates><panel_attributes>Factory&lt;T&gt;
+bg=green</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>734</x><y>620</y><w>90</w><h>140</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;10;70;120</additional_attributes></element><element><id>Relation</id><coordinates><x>734</x><y>630</y><w>300</w><h>30</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>280;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>734</x><y>530</y><w>160</w><h>120</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;100;140;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>288</x><y>470</y><w>300</w><h>80</h></coordinates><panel_attributes>/DieselEngineModule/
 bg=pink
 --
+-horsepower : int
 --
-/#provideEngine(dieselEngine : DieselEngine) : Engine/
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLPackage</id><coordinates><x>347</x><y>290</y><w>140</w><h>270</h></coordinates><panel_attributes>dagger2example.car
++DieselEngineModule(horseposer : int)
+#provideEngine() : Engine
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLPackage</id><coordinates><x>37</x><y>360</y><w>140</w><h>210</h></coordinates><panel_attributes>dagger2example.car
 --
 bg=blue
 Car
 DieselEngine
-Engine
+/Engine/
 PetrolEngine
 Remote
 Rims
@@ -45,38 +43,39 @@ Wheels
 --
 Car_Factory
 Car_MembersInjector
-DieselEngine_Factory
 PetrolEngine_Factory
 Remote_Factory
 
 
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLPackage</id><coordinates><x>310</x><y>600</y><w>230</w><h>180</h></coordinates><panel_attributes>dagger2example.dagger
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLPackage</id><coordinates><x>0</x><y>670</y><w>280</w><h>180</h></coordinates><panel_attributes>dagger2example.dagger
 --
 bg=pink
-CarComponent
-DieselEngineModule
-PetrolEngineModule
-WheelsModule
+/CarComponent/
+/PetrolEngineModule/
+/WheelsModule/
 --
 DaggerCarComponent
+DieselEngineModule_ProvideEngineFactory
 WheelsModule_ProvideRimsFactory
 WheelsModule_ProvideTiresFactory
 WheelsModule_ProvideWheelsFactory
 
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLInterface</id><coordinates><x>790</x><y>70</y><w>80</w><h>100</h></coordinates><panel_attributes>Engine
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLInterface</id><coordinates><x>480</x><y>140</y><w>80</w><h>100</h></coordinates><panel_attributes>Engine
 bg=blue
 --
 start() : void
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>680</x><y>0</y><w>100</w><h>60</h></coordinates><panel_attributes>DieselEngine
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>370</x><y>70</y><w>100</w><h>60</h></coordinates><panel_attributes>DieselEngine
 bg=blue
 --
+horsepower : int
+--
 +DieselEngine()
-+start()</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>820</x><y>50</y><w>50</w><h>60</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;40;30;10</additional_attributes></element><element><id>Relation</id><coordinates><x>730</x><y>50</y><w>120</w><h>60</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>100;40;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>600</x><y>470</y><w>300</w><h>50</h></coordinates><panel_attributes>/PetrolEngineModule/
++start()</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>510</x><y>120</y><w>50</w><h>60</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;40;30;10</additional_attributes></element><element><id>Relation</id><coordinates><x>420</x><y>120</y><w>120</w><h>60</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>100;40;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>290</x><y>610</y><w>300</w><h>50</h></coordinates><panel_attributes>/PetrolEngineModule/
 bg=pink
 --
 --
 /#provideEngine(petrolEngine : PetrolEngine) : Engine/
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>960</x><y>670</y><w>310</w><h>130</h></coordinates><panel_attributes>PetrolEngine_Factory
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>640</x><y>740</y><w>310</w><h>130</h></coordinates><panel_attributes>PetrolEngine_Factory
 bg=magenta
 --
 --
@@ -88,4 +87,33 @@ _+newInstance() : PetrolEngine_
 _-InstanceHolder :: PetrolEngine_Factory_
 --
 _-INSTANCE : PetrolEngine_Factory_
-innerclass}</panel_attributes><additional_attributes></additional_attributes></element></diagram>
+innerclass}</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>670</x><y>60</y><w>440</w><h>340</h></coordinates><panel_attributes>DaggerCarComponent
+bg=magenta
+--
+--
+-DaggerCarComponent()
++builder() : Builder
+{innerclass
+_+Builder_
+--
+-dieselEngineModule : DieselEngineModule
+--
+-Builder()
++dieselEngineModule(dieselEngineModule : DieselEngineModule) : Builder
++build() : CarComponent
+innerclass}
+{innerclass
+_-CarComponentImpl_
+--
+-dieselEngineModule : DieselEngineModule
+-carComponentImpl : CarComponentImpl
+--
+-CarCopmponentImpl(dieselEngineModuleParam : DieselEngineModule)
+-wheels() : Wheels
++get() : Car
++inject(mainActivity : MainActivity) : void
+-injectCar(instance : Car) : Car
+-injectMainActivity(instance : MainActivity) : MainActivity
+innerclass}
+
+</panel_attributes><additional_attributes></additional_attributes></element></diagram>
