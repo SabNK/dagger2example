@@ -1,37 +1,39 @@
-<diagram program="umletino" version="14.4.0-SNAPSHOT"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>60</x><y>450</y><w>160</w><h>60</h></coordinates><panel_attributes>MainActivity
+<diagram program="umletino" version="14.4.0-SNAPSHOT"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>210</x><y>400</y><w>160</w><h>60</h></coordinates><panel_attributes>MainActivity
 bg=yellow
 --
 -car: Car
 --
-+onCreate(---)</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>170</x><y>50</y><w>100</w><h>40</h></coordinates><panel_attributes>Engine
++onCreate(---)</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>320</x><y>40</y><w>100</w><h>40</h></coordinates><panel_attributes>Engine
 bg=blue
 --
-+Engine()</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>0</x><y>50</y><w>100</w><h>40</h></coordinates><panel_attributes>Wheels
++Engine()</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>150</x><y>40</y><w>100</w><h>40</h></coordinates><panel_attributes>Wheels
 bg=blue
 --
-+Wheels()</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>60</x><y>260</y><w>160</w><h>90</h></coordinates><panel_attributes>Car
++Wheels()</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>180</x><y>250</y><w>230</w><h>110</h></coordinates><panel_attributes>Car
 bg=blue
 --
 -engine: Engine
 -wheels: Wheels
 --
 +Carf(engine, wheels)
-+drive(): void</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLInterface</id><coordinates><x>290</x><y>40</y><w>220</w><h>120</h></coordinates><panel_attributes>CarComponent
++drive(): void
++enableRemote(remote : Remote) : void</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLInterface</id><coordinates><x>440</x><y>30</y><w>220</w><h>120</h></coordinates><panel_attributes>CarComponent
 bg=pink
 --
 getCar(): Car
 inject(mainActivity : Mainactivity) : void
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>610</x><y>40</y><w>310</w><h>130</h></coordinates><panel_attributes>Car_Factory
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>750</x><y>280</y><w>350</w><h>140</h></coordinates><panel_attributes>Car_Factory
 bg=magenta
 --
-- engineProvider: Provider&lt;Engine&gt;
-- wheelsProvider: Provider&lt;Wheels&gt;
+-engineProvider : Provider&lt;Engine&gt;
+-wheelsProvider : Provider&lt;Wheels&gt;
+-remoteProvider : Provider&lt;Remote&gt;
 --
-+Car_Factory(engineProvider, wheelsProvider)
++Car_Factory(engineProvider, wheelsProvider, remoteProvider)
 +get() : Car
 _+create(engineProvider, wheelsProvider) : Car_Factory_
 _+newInstance(engine, wheels) : Car _
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>610</x><y>210</y><w>310</w><h>130</h></coordinates><panel_attributes>Engine_Factory
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>760</x><y>450</y><w>310</w><h>130</h></coordinates><panel_attributes>Engine_Factory
 bg=magenta
 --
 --
@@ -43,7 +45,7 @@ _+newInstance() : Engine _
 _-InstanceHolder :: Engine_Factory_
 --
 _-INSTANCE : Engine_Factory_
-innerclass}</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>610</x><y>360</y><w>310</w><h>130</h></coordinates><panel_attributes>Wheels_Factory
+innerclass}</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>760</x><y>600</y><w>310</w><h>130</h></coordinates><panel_attributes>Wheels_Factory
 bg=magenta
 --
 --
@@ -55,36 +57,71 @@ _+newInstance() : Wheel _
 _-InstanceHolder :: Wheel_Factory_
 --
 _-INSTANCE : Wheel_Factory_
-innerclass}</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>280</x><y>520</y><w>310</w><h>250</h></coordinates><panel_attributes>DaggerCarComponent
+innerclass}</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>420</x><y>280</y><w>320</w><h>270</h></coordinates><panel_attributes>DaggerCarComponent
 bg=magenta
 --
 --
-- DaggerCarComponent()
+-DaggerCarComponent()
 _+builder() : Builder_
 _+create() : CarComponent_
 --
 {innerclass
 _+Builder :: DaggerCarComponent_
 --
-- Builder()
+-Builder()
 +build() : CarComponent
 innerclass}
 {innerclass
 _-CarComponentImpl :: DaggerCarComponent_
 --
-- carComponentImpl : CarComponentImpl
+-carComponentImpl : CarComponentImpl
 --
-- CarComponentImpl()
-+ getCar() : Car
+-CarComponentImpl()
++getCar() : Car
 +inject(mainActivity : MainActivity) : void
-- injectMainActivity(instance : MainActivity) : MainActivity
-innerclass}</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>40</x><y>80</y><w>120</w><h>200</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>100;180;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>140</x><y>80</y><w>100</w><h>200</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;180;80;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>610</x><y>520</y><w>390</w><h>110</h></coordinates><panel_attributes>MainActivity_MembersInjector
+-injectCar(instance : Car) : Car
+-injectMainActivity(instance : MainActivity) : MainActivity
+innerclass}</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>190</x><y>70</y><w>90</w><h>200</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>70;180;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>260</x><y>70</y><w>130</w><h>200</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;180;110;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>50</x><y>620</y><w>390</w><h>110</h></coordinates><panel_attributes>MainActivity_MembersInjector
 bg=magenta
 --
-- carProvider: Provider&lt;Car&gt;
+-carProvider: Provider&lt;Car&gt;
 --
 +MainActivity_MembersInjector(carProvider : Provider&lt;Car&gt;)
 _+create(carProvider : Provider&lt;Car&gt;) : MembersInjector&lt;MainActivity&gt;_
 +injectMembers(instance : MainActivity) : void
 _+injectCar(instance : MainActivity, car : Car) : void_
-</panel_attributes><additional_attributes></additional_attributes></element></diagram>
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>30</x><y>140</y><w>170</w><h>60</h></coordinates><panel_attributes>Remote
+bg=blue
+--
++Remote()
++setListener(car : Car) : void</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>760</x><y>750</y><w>310</w><h>130</h></coordinates><panel_attributes>Remote_Factory
+bg=magenta
+--
+--
++get() : Remote
+_+create() : Remote_Factory_
+_+newInstance() : Remote_
+--
+{innerclass
+_-InstanceHolder :: Remote_Factory_
+--
+_-INSTANCE : Remote_Factory_
+innerclass}</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLInterface</id><coordinates><x>820</x><y>0</y><w>80</w><h>90</h></coordinates><panel_attributes>Provider&lt;T&gt;
+bg=green
+--
+get() : T</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLInterface</id><coordinates><x>819</x><y>130</y><w>80</w><h>70</h></coordinates><panel_attributes>Factory&lt;T&gt;
+bg=green</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>850</x><y>70</y><w>30</w><h>100</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;80</additional_attributes></element><element><id>Relation</id><coordinates><x>860</x><y>180</y><w>40</w><h>120</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;10;20;100</additional_attributes></element><element><id>Relation</id><coordinates><x>840</x><y>190</y><w>90</w><h>280</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;10;70;260</additional_attributes></element><element><id>UMLInterface</id><coordinates><x>0</x><y>440</y><w>200</w><h>90</h></coordinates><panel_attributes>MembersInjector&lt;T&gt;
+bg=green
+--
+injectMembers(instance : T) : void</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>90</x><y>500</y><w>60</w><h>140</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;10;40;120</additional_attributes></element><element><id>UMLClass</id><coordinates><x>100</x><y>750</y><w>370</w><h>140</h></coordinates><panel_attributes>Car_MembersInjector
+bg=magenta
+--
+-engineProvider : Provider&lt;Engine&gt;
+-remoteProvider : Provider&lt;Remote&gt;
+--
++Car_MembersInjector(engineProvider , remoteProvider)
+_+create(engineProvider, remoteProvider) : MembersInjector&lt;Car&gt;_
++injectMembers(instance : Car) : void
+_+injectEngine(instance : Car, engine : Engine) : void_
+_+injectEnableRemote(instance : Car, remote : Remote) : void_
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>602</x><y>120</y><w>130</w><h>330</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;10;110;310</additional_attributes></element></diagram>

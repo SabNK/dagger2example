@@ -39,12 +39,18 @@ public final class DaggerCarComponent {
 
     @Override
     public Car getCar() {
-      return new Car(new Engine(), new Wheels());
+      return injectCar(Car_Factory.newInstance(new Wheels()));
     }
 
     @Override
     public void inject(MainActivity mainActivity) {
       injectMainActivity(mainActivity);
+    }
+
+    private Car injectCar(Car instance) {
+      Car_MembersInjector.injectEngine(instance, new Engine());
+      Car_MembersInjector.injectEnableRemote(instance, new Remote());
+      return instance;
     }
 
     private MainActivity injectMainActivity(MainActivity instance) {
