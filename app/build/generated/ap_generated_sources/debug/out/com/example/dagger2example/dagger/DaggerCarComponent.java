@@ -6,6 +6,7 @@ import com.example.dagger2example.MainActivity_MembersInjector;
 import com.example.dagger2example.car.Car;
 import com.example.dagger2example.car.Car_Factory;
 import com.example.dagger2example.car.Car_MembersInjector;
+import com.example.dagger2example.car.PetrolEngine;
 import com.example.dagger2example.car.Remote;
 import com.example.dagger2example.car.Wheels;
 import dagger.internal.DaggerGenerated;
@@ -20,35 +21,50 @@ public final class DaggerCarComponent {
   private DaggerCarComponent() {
   }
 
-  public static Builder builder() {
+  public static CarComponent.Builder builder() {
     return new Builder();
   }
 
-  public static final class Builder {
-    private DieselEngineModule dieselEngineModule;
+  private static final class Builder implements CarComponent.Builder {
+    private Integer horsepower;
 
-    private Builder() {
-    }
+    private Integer engineCapacity;
 
-    public Builder dieselEngineModule(DieselEngineModule dieselEngineModule) {
-      this.dieselEngineModule = Preconditions.checkNotNull(dieselEngineModule);
+    @Override
+    public Builder horsepower(int horsepower) {
+      this.horsepower = Preconditions.checkNotNull(horsepower);
       return this;
     }
 
+    @Override
+    public Builder engineCapacity(int engineCapacity) {
+      this.engineCapacity = Preconditions.checkNotNull(engineCapacity);
+      return this;
+    }
+
+    @Override
     public CarComponent build() {
-      Preconditions.checkBuilderRequirement(dieselEngineModule, DieselEngineModule.class);
-      return new CarComponentImpl(dieselEngineModule);
+      Preconditions.checkBuilderRequirement(horsepower, Integer.class);
+      Preconditions.checkBuilderRequirement(engineCapacity, Integer.class);
+      return new CarComponentImpl(horsepower, engineCapacity);
     }
   }
 
   private static final class CarComponentImpl implements CarComponent {
-    private final DieselEngineModule dieselEngineModule;
+    private final Integer horsepower;
+
+    private final Integer engineCapacity;
 
     private final CarComponentImpl carComponentImpl = this;
 
-    private CarComponentImpl(DieselEngineModule dieselEngineModuleParam) {
-      this.dieselEngineModule = dieselEngineModuleParam;
+    private CarComponentImpl(Integer horsepowerParam, Integer engineCapacityParam) {
+      this.horsepower = horsepowerParam;
+      this.engineCapacity = engineCapacityParam;
 
+    }
+
+    private PetrolEngine petrolEngine() {
+      return new PetrolEngine(horsepower, engineCapacity);
     }
 
     private Wheels wheels() {
@@ -57,7 +73,7 @@ public final class DaggerCarComponent {
 
     @Override
     public Car getCar() {
-      return injectCar(Car_Factory.newInstance(DieselEngineModule_ProvideEngineFactory.provideEngine(dieselEngineModule), wheels()));
+      return injectCar(Car_Factory.newInstance(petrolEngine(), wheels()));
     }
 
     @Override

@@ -5,29 +5,37 @@ import dagger.internal.DaggerGenerated;
 import dagger.internal.Factory;
 import dagger.internal.QualifierMetadata;
 import dagger.internal.ScopeMetadata;
+import javax.inject.Provider;
 
 @ScopeMetadata
-@QualifierMetadata
+@QualifierMetadata("javax.inject.Named")
 @DaggerGenerated
 @SuppressWarnings({
     "unchecked",
     "rawtypes"
 })
 public final class PetrolEngine_Factory implements Factory<PetrolEngine> {
+  private final Provider<Integer> horsepowerProvider;
+
+  private final Provider<Integer> engineCapacityProvider;
+
+  public PetrolEngine_Factory(Provider<Integer> horsepowerProvider,
+      Provider<Integer> engineCapacityProvider) {
+    this.horsepowerProvider = horsepowerProvider;
+    this.engineCapacityProvider = engineCapacityProvider;
+  }
+
   @Override
   public PetrolEngine get() {
-    return newInstance();
+    return newInstance(horsepowerProvider.get(), engineCapacityProvider.get());
   }
 
-  public static PetrolEngine_Factory create() {
-    return InstanceHolder.INSTANCE;
+  public static PetrolEngine_Factory create(Provider<Integer> horsepowerProvider,
+      Provider<Integer> engineCapacityProvider) {
+    return new PetrolEngine_Factory(horsepowerProvider, engineCapacityProvider);
   }
 
-  public static PetrolEngine newInstance() {
-    return new PetrolEngine();
-  }
-
-  private static final class InstanceHolder {
-    private static final PetrolEngine_Factory INSTANCE = new PetrolEngine_Factory();
+  public static PetrolEngine newInstance(int horsepower, int engineCapacity) {
+    return new PetrolEngine(horsepower, engineCapacity);
   }
 }
