@@ -3,6 +3,7 @@ package com.example.dagger2example;
 
 import dagger.internal.DaggerGenerated;
 import dagger.internal.Factory;
+import dagger.internal.Preconditions;
 import dagger.internal.QualifierMetadata;
 import dagger.internal.ScopeMetadata;
 
@@ -13,21 +14,21 @@ import dagger.internal.ScopeMetadata;
     "unchecked",
     "rawtypes"
 })
-public final class Wheels_Factory implements Factory<Wheels> {
+public final class WheelsModule_ProvideTiresFactory implements Factory<Tires> {
   @Override
-  public Wheels get() {
-    return newInstance();
+  public Tires get() {
+    return provideTires();
   }
 
-  public static Wheels_Factory create() {
+  public static WheelsModule_ProvideTiresFactory create() {
     return InstanceHolder.INSTANCE;
   }
 
-  public static Wheels newInstance() {
-    return new Wheels();
+  public static Tires provideTires() {
+    return Preconditions.checkNotNullFromProvides(WheelsModule.provideTires());
   }
 
   private static final class InstanceHolder {
-    private static final Wheels_Factory INSTANCE = new Wheels_Factory();
+    private static final WheelsModule_ProvideTiresFactory INSTANCE = new WheelsModule_ProvideTiresFactory();
   }
 }

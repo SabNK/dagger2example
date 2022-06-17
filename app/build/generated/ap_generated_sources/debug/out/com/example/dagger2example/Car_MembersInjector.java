@@ -3,7 +3,6 @@ package com.example.dagger2example;
 
 import dagger.MembersInjector;
 import dagger.internal.DaggerGenerated;
-import dagger.internal.InjectedFieldSignature;
 import dagger.internal.QualifierMetadata;
 import javax.inject.Provider;
 
@@ -14,29 +13,19 @@ import javax.inject.Provider;
     "rawtypes"
 })
 public final class Car_MembersInjector implements MembersInjector<Car> {
-  private final Provider<Engine> engineProvider;
-
   private final Provider<Remote> remoteProvider;
 
-  public Car_MembersInjector(Provider<Engine> engineProvider, Provider<Remote> remoteProvider) {
-    this.engineProvider = engineProvider;
+  public Car_MembersInjector(Provider<Remote> remoteProvider) {
     this.remoteProvider = remoteProvider;
   }
 
-  public static MembersInjector<Car> create(Provider<Engine> engineProvider,
-      Provider<Remote> remoteProvider) {
-    return new Car_MembersInjector(engineProvider, remoteProvider);
+  public static MembersInjector<Car> create(Provider<Remote> remoteProvider) {
+    return new Car_MembersInjector(remoteProvider);
   }
 
   @Override
   public void injectMembers(Car instance) {
-    injectEngine(instance, engineProvider.get());
     injectEnableRemote(instance, remoteProvider.get());
-  }
-
-  @InjectedFieldSignature("com.example.dagger2example.Car.engine")
-  public static void injectEngine(Car instance, Engine engine) {
-    instance.engine = engine;
   }
 
   public static void injectEnableRemote(Car instance, Remote remote) {

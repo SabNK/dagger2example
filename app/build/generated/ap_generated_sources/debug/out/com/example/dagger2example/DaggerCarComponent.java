@@ -2,6 +2,7 @@
 package com.example.dagger2example;
 
 import dagger.internal.DaggerGenerated;
+import dagger.internal.Preconditions;
 
 @DaggerGenerated
 @SuppressWarnings({
@@ -24,6 +25,15 @@ public final class DaggerCarComponent {
     private Builder() {
     }
 
+    /**
+     * @deprecated This module is declared, but an instance is not used in the component. This method is a no-op. For more, see https://dagger.dev/unused-modules.
+     */
+    @Deprecated
+    public Builder wheelsModule(WheelsModule wheelsModule) {
+      Preconditions.checkNotNull(wheelsModule);
+      return this;
+    }
+
     public CarComponent build() {
       return new CarComponentImpl();
     }
@@ -37,9 +47,13 @@ public final class DaggerCarComponent {
 
     }
 
+    private Wheels wheels() {
+      return WheelsModule_ProvideWheelsFactory.provideWheels(WheelsModule_ProvideRimsFactory.provideRims(), WheelsModule_ProvideTiresFactory.provideTires());
+    }
+
     @Override
     public Car getCar() {
-      return injectCar(Car_Factory.newInstance(new Wheels()));
+      return injectCar(Car_Factory.newInstance(new Engine(), wheels()));
     }
 
     @Override
@@ -48,7 +62,6 @@ public final class DaggerCarComponent {
     }
 
     private Car injectCar(Car instance) {
-      Car_MembersInjector.injectEngine(instance, new Engine());
       Car_MembersInjector.injectEnableRemote(instance, new Remote());
       return instance;
     }
